@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>App Name</title>
+  <meta name="description" content="Boiler plate for express and react">
+  <meta name="author" content="Digvijay Upadhyay">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="shortcut icon" href="img/React-icon.png" /> </head>
+
+<body>
+  <div id="index"></div>
+  <script src="js/app.js"></script>
+  <script>
+    var domElement = document.getElementById("index");
+    var flags = {
+      source: "application",
+      theme: {
+        // button: {
+        //   backgroundColor: '#459281',
+        //   borderColor: '#459281',
+        //   color: 'white'
+        // },
+        // page: {
+        //   backgroundColor: '#113a59',
+        //   color: 'white'
+        // },
+        // images: {
+        //   appLogo: 'https://roaminsure.co.uk/static/roam_tcm.f7f837b1.svg',
+        //   lykCardImage: 'http://card.visitbratislava.com/wp-content/uploads/2017/07/cica.png'
+        // }
+      }
+    };
+    renderReactApp(domElement, flags);
+  </script>
+</body>
+
+</html>
