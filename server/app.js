@@ -35,7 +35,7 @@ app.use(
 
 app.use(express.static(CONST.PUBLIC_FOLDER_NAME));
 app.get('/', homeController.index);
-app.get('/api', apiController.index);
+app.post('/api', apiController.index);
 
 app.listen(port, () => logger.info(`Server listening on port ${port}!`));
 

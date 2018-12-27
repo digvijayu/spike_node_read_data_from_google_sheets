@@ -38,9 +38,6 @@ class App extends Component {
           <ThemeProvider theme={generateTheme(this.props.theme)}>
             <HashRouter>
               <main className="h-100">
-                <Link to={ROUTES.home}>Home</Link>
-                <br />
-                <Link to={ROUTES.page}>Page</Link>
                 <Switch>
                   <Route exact path={ROUTES.home} component={Home} />
                   <Route path={ROUTES.page} component={Page} />
