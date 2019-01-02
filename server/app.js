@@ -35,7 +35,9 @@ app.use(
 
 app.use(express.static(CONST.PUBLIC_FOLDER_NAME));
 app.get('/', homeController.index);
+app.get('/page', homeController.index);
 app.post('/api', apiController.index);
+app.get('/api/login-url', apiController.getGoogleLoginUrl);
 
 app.listen(port, () => logger.info(`Server listening on port ${port}!`));
 

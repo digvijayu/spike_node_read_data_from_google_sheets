@@ -9,12 +9,29 @@ class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      serverJson: null
+      serverJson: null,
+      googleLoginUrl: null
     };
   }
 
+  componentDidMount() {
+    this.getUrl();
+  }
+
+  getUrl() {
+    return fetch('/api/login-url')
+    .then(response => response.json())
+    .then(res => {
+      console.log('res', res);
+      this.setState({
+        ...this.state,
+        googleLoginUrl: res.url
+      });
+    });
+  }
+
   render() {
-    const { serverJson } = this.state;
+    const { serverJson, googleLoginUrl } = this.state;
     return (
       <div>
         <Text>Home.Page.Name</Text>
@@ -22,7 +39,13 @@ class Page extends Component {
           Load Sheet Details
         </button>
 
-        { serverJson && <div><pre>{JSON.stringify(serverJson, null, 2) }</pre></div> }
+        {googleLoginUrl && <a href={googleLoginUrl}>Login with Google</a>}
+
+        {serverJson && (
+          <div>
+            <pre>{JSON.stringify(serverJson, null, 2)}</pre>
+          </div>
+        )}
       </div>
     );
   }
@@ -39,13 +62,13 @@ class Page extends Component {
         secondParam: 'yourOtherValue'
       })
     })
-    .then(response => response.json())
-    .then(response => {
-      this.setState({
-        ...this.state,
-        serverJson: response
+      .then(response => response.json())
+      .then(response => {
+        this.setState({
+          ...this.state,
+          serverJson: response
+        });
       });
-    });
   }
 }
 
