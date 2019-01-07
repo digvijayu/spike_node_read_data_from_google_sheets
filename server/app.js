@@ -6,6 +6,7 @@ const homeController = require('./controllers/home');
 const apiController = require('./controllers/api');
 const { logger } = require('./utils/logger');
 const utils = require('./utils');
+const bodyParser = require('body-parser');
 
 // get env config
 require('dotenv').config({ path: utils.getEnvironmentVariableFilePath() });
@@ -33,11 +34,13 @@ app.use(
   })
 );
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(express.static(CONST.PUBLIC_FOLDER_NAME));
-app.get('/', homeController.index);
-app.get('/page', homeController.index);
+app.get(['/', '/page', '/loggedin'], homeController.index);
 app.post('/api', apiController.index);
 app.get('/api/login-url', apiController.getGoogleLoginUrl);
+app.post('/api/get-token', apiController.getGoogleTokenAfterLogin);
 
 app.listen(port, () => logger.info(`Server listening on port ${port}!`));
 

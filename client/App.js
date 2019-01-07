@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import locale_en from 'react-intl/locale-data/en';
 import locale_de from 'react-intl/locale-data/de';
@@ -16,6 +16,7 @@ import { ROUTES, DEFAULT_LANGUAGE } from './utils/constants';
 import { isSupportedLanguage } from './utils';
 import Home from './pages/Home';
 import Page from './pages/Page';
+import LoggedIn from './pages/LoggedIn';
 import { Link } from 'react-router-dom';
 
 const messages = {
@@ -36,14 +37,15 @@ class App extends Component {
       <Provider store={store}>
         <IntlProvider locale={language} messages={messages[language]}>
           <ThemeProvider theme={generateTheme(this.props.theme)}>
-            <HashRouter>
+            <BrowserRouter>
               <main className="h-100">
                 <Switch>
                   <Route exact path={ROUTES.home} component={Home} />
                   <Route path={ROUTES.page} component={Page} />
+                  <Route path={ROUTES.loggedIn} component={LoggedIn} />
                 </Switch>
               </main>
-            </HashRouter>
+            </BrowserRouter>
           </ThemeProvider>
         </IntlProvider>
       </Provider>

@@ -31,44 +31,13 @@ class Page extends Component {
   }
 
   render() {
-    const { serverJson, googleLoginUrl } = this.state;
+    const { googleLoginUrl } = this.state;
     return (
       <div>
         <Text>Home.Page.Name</Text>
-        <button onClick={this.handleOnClick.bind(this)}>
-          Load Sheet Details
-        </button>
-
         {googleLoginUrl && <a href={googleLoginUrl}>Login with Google</a>}
-
-        {serverJson && (
-          <div>
-            <pre>{JSON.stringify(serverJson, null, 2)}</pre>
-          </div>
-        )}
       </div>
     );
-  }
-
-  handleOnClick() {
-    fetch('/api', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        firstParam: 'yourValue',
-        secondParam: 'yourOtherValue'
-      })
-    })
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          ...this.state,
-          serverJson: response
-        });
-      });
   }
 }
 

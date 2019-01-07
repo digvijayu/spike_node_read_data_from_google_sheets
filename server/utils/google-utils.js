@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const googleConfig = {
   clientId: '<GOOGLE_CLIENT_ID>', // e.g. asdfghjkljhgfdsghjk.apps.googleusercontent.com
   clientSecret: '<GOOGLE_CLIENT_SECRET>', // e.g. _ASDFA%DFASDFASDFASD#FAD-
-  redirect: 'http://localhost:3000/page' // this must match your google api settings
+  redirect: 'http://localhost:3000/loggedin' // this must match your google api settings
 };
 
 /**
@@ -22,7 +22,8 @@ const createConnection = () => {
  */
 const defaultScope = [
   'https://www.googleapis.com/auth/plus.me',
-  'https://www.googleapis.com/auth/userinfo.email'
+  'https://www.googleapis.com/auth/userinfo.email',
+  'https://www.googleapis.com/auth/spreadsheets'
 ];
 
 /**
